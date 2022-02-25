@@ -25,7 +25,7 @@
 			{#if $currentTaskGroupStore}
 				<h1>{$currentTaskGroupStore.name}</h1>
 				<NewTask />
-				<div class="mt-3">
+				<div class="mt-3 d-flex flex-column gap-3">
 					{#each $currentTaskGroupStore.tasks as task}
 						<Task {task} />
 					{/each}
