@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { Form, FormGroup, Label, Input, Button } from 'sveltestrap';
-	import { createForm } from 'svelte-forms-lib';
-	import * as yup from 'yup';
+	import { Spinner } from '$lib/components/ux';
+	import { stall } from '$lib/utils';
 	import { requiredEmail, type IFeedback } from '$lib/utils/form.utils';
 	import { createEventDispatcher } from 'svelte';
-	import { stall } from '$lib/utils';
-	import { Spinner } from '$lib/components/ux';
+	import { createForm } from 'svelte-forms-lib';
+	import { Button, Form, FormGroup, Input, Label } from 'sveltestrap';
+	import * as yup from 'yup';
 
 	//#region form handling
 	interface FormProperties {

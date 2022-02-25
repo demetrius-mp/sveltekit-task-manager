@@ -1,5 +1,5 @@
 import type { Task, TaskGroup as TaskGroupType, User as UserType } from '$lib/types';
-import { derived, get, writable, type Writable } from 'svelte/store';
+import { writable, type Writable } from 'svelte/store';
 
 interface TaskGroup extends TaskGroupType {
 	isCurrent?: boolean;

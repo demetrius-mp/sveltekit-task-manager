@@ -1,8 +1,7 @@
 <script lang="ts">
 	import NewTask from '$lib/components/forms/NewTask.svelte';
-	import { Sidebar, Navbar } from '$lib/components/layout';
-	import { userStore } from '$lib/stores';
-	import { currentTaskGroupStore } from '$lib/stores';
+	import { Navbar, Sidebar } from '$lib/components/layout';
+	import { currentTaskGroupStore, userStore } from '$lib/stores';
 	import { Container } from 'sveltestrap';
 
 	let sidebarIsActive: boolean = true;

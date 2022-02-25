@@ -1,17 +1,17 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	import {
-		Navbar,
-		NavbarBrand,
-		Nav,
-		NavItem,
 		Button,
 		Dropdown,
-		DropdownToggle,
-		DropdownMenu,
 		DropdownItem,
-		Icon
+		DropdownMenu,
+		DropdownToggle,
+		Icon,
+		Nav,
+		Navbar,
+		NavbarBrand,
+		NavItem
 	} from 'sveltestrap';
-	import { createEventDispatcher } from 'svelte';
 
 	interface EventDispatcher {
 		toggleSidebar: void;

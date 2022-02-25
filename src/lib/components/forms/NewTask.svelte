@@ -1,11 +1,10 @@
 <script lang="ts">
-	import { Button, Form, Icon, Input, InputGroup } from 'sveltestrap';
 	import { Spinner } from '$lib/components/ux';
-	import { createForm } from 'svelte-forms-lib';
-	import * as yup from 'yup';
+	import { currentTaskGroupStore, userStore } from '$lib/stores';
 	import { requiredString } from '$lib/utils/form.utils';
-	import { userStore } from '$lib/stores';
-	import { currentTaskGroupStore } from '$lib/stores';
+	import { createForm } from 'svelte-forms-lib';
+	import { Button, Form, Icon, Input, InputGroup } from 'sveltestrap';
+	import * as yup from 'yup';
 
 	interface FormProps {
 		name: string;

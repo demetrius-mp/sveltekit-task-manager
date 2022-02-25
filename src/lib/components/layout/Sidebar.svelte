@@ -1,11 +1,10 @@
 <script lang="ts">
-	import { Icon, Nav, NavItem, NavLink } from 'sveltestrap';
-	import { onMount, createEventDispatcher } from 'svelte';
-	import { elementIsOverflowing } from '$lib/utils/dom.utils';
 	import { NewTaskGroup } from '$lib/components/forms';
-	import { userStore } from '$lib/stores';
-	import { currentTaskGroupStore } from '$lib/stores';
+	import { currentTaskGroupStore, userStore } from '$lib/stores';
 	import type { TaskGroup } from '$lib/types';
+	import { elementIsOverflowing } from '$lib/utils/dom.utils';
+	import { createEventDispatcher, onMount } from 'svelte';
+	import { Icon, Nav, NavItem, NavLink } from 'sveltestrap';
 
 	export let active: boolean = false;
 
