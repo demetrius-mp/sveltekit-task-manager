@@ -13,6 +13,7 @@ interface UserStore extends Writable<User> {
 	addTaskGroup: (taskGroup: ITaskGroup) => Promise<ITaskGroup>;
 	updateTaskGroup: (taskGroup: ITaskGroup) => Promise<void>;
 	addTaskToTaskGroup: (taskGroup: ITaskGroup, task: ITask) => Promise<ITask>;
+	deleteTaskFromGroup: (taskGroup: ITaskGroup, task: ITask) => Promise<void>;
 }
 
 function createUserStore(): UserStore {
@@ -61,9 +62,21 @@ function createUserStore(): UserStore {
 			};
 
 			taskGroup.tasks = [...taskGroup.tasks, newTask];
-			updateTaskGroup(taskGroup);
+			await updateTaskGroup(taskGroup);
 
 			return newTask;
+		},
+		deleteTaskFromGroup: async (taskGroup, task) => {
+			const updatedTaskList = taskGroup.tasks.filter((value) => {
+				return task.id !== value.id;
+			});
+
+			const updatedTaskGroup: ITaskGroup = {
+				...taskGroup,
+				tasks: updatedTaskList
+			};
+
+			await updateTaskGroup(updatedTaskGroup);
 		}
 	};
 }

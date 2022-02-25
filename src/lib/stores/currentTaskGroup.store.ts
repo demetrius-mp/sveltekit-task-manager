@@ -6,6 +6,7 @@ interface CurrentTaskGroupStore {
 	subscribe: Writable<ITaskGroup>['subscribe'];
 	set: Writable<ITaskGroup>['set'];
 	addTask: (task: ITask) => Promise<ITask>;
+	deleteTask: (task: ITask) => Promise<void>;
 }
 
 function createCurrentTaskGroupStore(): CurrentTaskGroupStore {
@@ -29,7 +30,10 @@ function createCurrentTaskGroupStore(): CurrentTaskGroupStore {
 			});
 		},
 		addTask: async (task) => {
-			return userStore.addTaskToTaskGroup(get(derivedStore), task);
+			return await userStore.addTaskToTaskGroup(get(derivedStore), task);
+		},
+		deleteTask: async (task) => {
+			await userStore.deleteTaskFromGroup(get(derivedStore), task);
 		}
 	};
 }
