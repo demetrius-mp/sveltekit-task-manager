@@ -3,6 +3,7 @@
 	import { onMount, createEventDispatcher } from 'svelte';
 	import { elementIsOverflowing } from '$lib/utils/dom.utils';
 	import { NewTaskGroup } from '$lib/components/forms';
+	import { userStore } from '$lib/stores';
 
 	export let active: boolean = false;
 
@@ -47,6 +48,13 @@
 						<NavLink active>Task group title</NavLink>
 					</NavItem>
 				</div>
+				{#each $userStore.taskGroups as taskGroup}
+					<div class="hover-gray mb-1">
+						<NavItem>
+							<NavLink>{taskGroup.name}</NavLink>
+						</NavItem>
+					</div>
+				{/each}
 			</Nav>
 		</div>
 	</div>

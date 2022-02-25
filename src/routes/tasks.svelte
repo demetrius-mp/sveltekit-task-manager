@@ -1,11 +1,17 @@
 <script lang="ts">
 	import { Sidebar, Navbar } from '$lib/components/layout';
+	import { userStore } from '$lib/stores';
 	import { Container } from 'sveltestrap';
 
 	let sidebarIsActive: boolean = true;
 	function handleToggleSidebar() {
 		sidebarIsActive = !sidebarIsActive;
 	}
+
+	$userStore = {
+		taskGroups: [],
+		avatarUrl: ''
+	};
 </script>
 
 <div class="global__wrapper">

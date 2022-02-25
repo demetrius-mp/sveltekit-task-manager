@@ -2,25 +2,25 @@
 	import { Button, Form, Icon, Input, InputGroup } from 'sveltestrap';
 	import { Spinner } from '$lib/components/ux';
 	import { createForm } from 'svelte-forms-lib';
-	import { stall } from '$lib/utils';
 	import * as yup from 'yup';
 	import { requiredString } from '$lib/utils/form.utils';
+	import { userStore } from '$lib/stores';
 
 	interface FormProps {
 		name: string;
 	}
 
-	const { form, isSubmitting, handleSubmit } = createForm<FormProps>({
+	const { form, isSubmitting, handleSubmit, handleReset } = createForm<FormProps>({
 		initialValues: {
 			name: ''
 		},
-		onSubmit: async ({ name }) => {
-			await stall();
-			alert(JSON.stringify({ name }));
-		},
 		validationSchema: yup.object({
 			name: requiredString()
-		})
+		}),
+		onSubmit: async ({ name }) => {
+			await userStore.addTaskGroup({ name, tasks: [] });
+			handleReset();
+		}
 	});
 </script>
 

@@ -11,3 +11,8 @@ export interface TaskGroup {
 	name: string;
 	tasks: Task[];
 }
+
+interface User {
+	avatarUrl?: string;
+	taskGroups: TaskGroup[];
+}
