@@ -4,6 +4,8 @@
 	import { elementIsOverflowing } from '$lib/utils/dom.utils';
 	import { NewTaskGroup } from '$lib/components/forms';
 	import { userStore } from '$lib/stores';
+	import { currentTaskGroup } from '$lib/stores/user.store';
+	import type { TaskGroup } from '$lib/types';
 
 	export let active: boolean = false;
 
@@ -18,6 +20,10 @@
 		const el = document.getElementById('overflowable');
 		applyDynamicPadding = elementIsOverflowing(el);
 	});
+
+	function setCurrentTaskGroup(taskGroup: TaskGroup) {
+		$currentTaskGroup = taskGroup;
+	}
 </script>
 
 <nav>
@@ -43,15 +49,15 @@
 		</div>
 		<div id="overflowable" class:dynamic-padding={applyDynamicPadding} class="scrollarea pe-3">
 			<Nav pills vertical class="mb-auto">
-				<div class="hover-gray mb-1">
-					<NavItem>
-						<NavLink active>Task group title</NavLink>
-					</NavItem>
-				</div>
 				{#each $userStore.taskGroups as taskGroup}
 					<div class="hover-gray mb-1">
 						<NavItem>
-							<NavLink>{taskGroup.name}</NavLink>
+							<NavLink
+								on:click={() => setCurrentTaskGroup(taskGroup)}
+								active={taskGroup.id === $currentTaskGroup?.id}
+							>
+								{taskGroup.name}
+							</NavLink>
 						</NavItem>
 					</div>
 				{/each}

@@ -32,3 +32,4 @@ function createUserStore(): UserStore {
 }
 
 export const userStore = createUserStore();
+export const currentTaskGroup = writable<TaskGroup>(null);
