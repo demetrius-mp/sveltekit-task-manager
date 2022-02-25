@@ -5,7 +5,7 @@
 	import * as yup from 'yup';
 	import { requiredString } from '$lib/utils/form.utils';
 	import { userStore } from '$lib/stores';
-	import { currentTaskGroup } from '$lib/stores/user.store';
+	import { currentTaskGroupStore } from '$lib/stores';
 
 	interface FormProps {
 		name: string;
@@ -19,10 +19,8 @@
 			name: requiredString()
 		}),
 		onSubmit: async ({ name }) => {
-			await userStore.addTaskToTaskGroup($currentTaskGroup, { name });
+			await userStore.addTaskToTaskGroup($currentTaskGroupStore, { name });
 
-			// requires forced update
-			$currentTaskGroup = $currentTaskGroup;
 			handleReset();
 		}
 	});

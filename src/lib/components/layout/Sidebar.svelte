@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { Button, Icon, Nav, NavItem, NavLink } from 'sveltestrap';
+	import { Icon, Nav, NavItem, NavLink } from 'sveltestrap';
 	import { onMount, createEventDispatcher } from 'svelte';
 	import { elementIsOverflowing } from '$lib/utils/dom.utils';
 	import { NewTaskGroup } from '$lib/components/forms';
 	import { userStore } from '$lib/stores';
-	import { currentTaskGroup } from '$lib/stores/user.store';
+	import { currentTaskGroupStore } from '$lib/stores';
 	import type { TaskGroup } from '$lib/types';
 
 	export let active: boolean = false;
@@ -22,7 +22,7 @@
 	});
 
 	function setCurrentTaskGroup(taskGroup: TaskGroup) {
-		$currentTaskGroup = taskGroup;
+		$currentTaskGroupStore = taskGroup;
 	}
 </script>
 
@@ -54,7 +54,7 @@
 						<NavItem>
 							<NavLink
 								on:click={() => setCurrentTaskGroup(taskGroup)}
-								active={taskGroup.id === $currentTaskGroup?.id}
+								active={taskGroup.id === $currentTaskGroupStore?.id}
 							>
 								{taskGroup.name}
 							</NavLink>

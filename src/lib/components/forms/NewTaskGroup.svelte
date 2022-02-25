@@ -5,7 +5,7 @@
 	import * as yup from 'yup';
 	import { requiredString } from '$lib/utils/form.utils';
 	import { userStore } from '$lib/stores';
-	import { currentTaskGroup } from '$lib/stores/user.store';
+	import { currentTaskGroupStore } from '$lib/stores';
 
 	interface FormProps {
 		name: string;
@@ -20,7 +20,8 @@
 		}),
 		onSubmit: async ({ name }) => {
 			const taskGroup = await userStore.addTaskGroup({ name, tasks: [] });
-			$currentTaskGroup = taskGroup;
+
+			$currentTaskGroupStore = taskGroup;
 			handleReset();
 		}
 	});

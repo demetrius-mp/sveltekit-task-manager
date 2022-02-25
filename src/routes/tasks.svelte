@@ -2,7 +2,7 @@
 	import NewTask from '$lib/components/forms/NewTask.svelte';
 	import { Sidebar, Navbar } from '$lib/components/layout';
 	import { userStore } from '$lib/stores';
-	import { currentTaskGroup } from '$lib/stores/user.store';
+	import { currentTaskGroupStore } from '$lib/stores';
 	import { Container } from 'sveltestrap';
 
 	let sidebarIsActive: boolean = true;
@@ -22,10 +22,10 @@
 	<main class:active={sidebarIsActive} class="global__content">
 		<Navbar bind:rotated={sidebarIsActive} on:toggleSidebar={handleToggleSidebar} />
 		<Container class="mt-3">
-			{#if $currentTaskGroup}
-				<h1>{$currentTaskGroup.name}</h1>
+			{#if $currentTaskGroupStore}
+				<h1>{$currentTaskGroupStore.name}</h1>
 				<NewTask />
-				{#each $currentTaskGroup.tasks as task}
+				{#each $currentTaskGroupStore.tasks as task}
 					<p>{task.name}</p>
 				{/each}
 			{:else}
