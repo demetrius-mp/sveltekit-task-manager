@@ -3,5 +3,8 @@
 	import '../app.css';
 </script>
 
+<svelte:head>
+	<title>Task Manager</title>
+</svelte:head>
 <Styles />
 <slot />

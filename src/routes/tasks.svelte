@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Task } from '$lib/components';
+	import { TaskList } from '$lib/components';
 	import { NewTask } from '$lib/components/forms';
 	import { Navbar, Sidebar } from '$lib/components/layout';
 	import { currentTaskGroupStore, userStore } from '$lib/stores';
@@ -25,10 +25,8 @@
 			{#if $currentTaskGroupStore}
 				<h1>{$currentTaskGroupStore.name}</h1>
 				<NewTask />
-				<div class="mt-3 d-flex flex-column gap-3">
-					{#each $currentTaskGroupStore.tasks as task}
-						<Task {task} />
-					{/each}
+				<div class="mt-3">
+					<TaskList />
 				</div>
 			{:else}
 				<h1>Task Manager</h1>
