@@ -1,4 +1,4 @@
-export interface Task {
+export interface ITask {
 	id?: number;
 	name: string;
 	createdAt?: Date;
@@ -6,13 +6,13 @@ export interface Task {
 	completedAt?: Date;
 }
 
-export interface TaskGroup {
+export interface ITaskGroup {
 	id?: number;
 	name: string;
 	tasks: Task[];
 }
 
-interface User {
+interface IUser {
 	avatarUrl?: string;
 	taskGroups: TaskGroup[];
 }

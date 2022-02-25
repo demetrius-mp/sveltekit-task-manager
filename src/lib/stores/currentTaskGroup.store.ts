@@ -1,11 +1,11 @@
-import type { Task, TaskGroup } from '$lib/types';
+import type { ITask, ITaskGroup } from '$lib/types';
 import { derived, get, type Writable } from 'svelte/store';
 import { userStore } from './user.store';
 
 interface CurrentTaskGroupStore {
-	subscribe: Writable<TaskGroup>['subscribe'];
-	set: Writable<TaskGroup>['set'];
-	addTask: (task: Task) => Promise<Task>;
+	subscribe: Writable<ITaskGroup>['subscribe'];
+	set: Writable<ITaskGroup>['set'];
+	addTask: (task: ITask) => Promise<ITask>;
 }
 
 function createCurrentTaskGroupStore(): CurrentTaskGroupStore {

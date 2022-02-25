@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { NewTaskGroup } from '$lib/components/forms';
 	import { currentTaskGroupStore, userStore } from '$lib/stores';
-	import type { TaskGroup } from '$lib/types';
+	import type { ITaskGroup } from '$lib/types';
 	import { elementIsOverflowing } from '$lib/utils/dom.utils';
 	import { createEventDispatcher, onMount } from 'svelte';
 	import { Icon, Nav, NavItem, NavLink } from 'sveltestrap';
@@ -20,7 +20,7 @@
 		applyDynamicPadding = elementIsOverflowing(el);
 	});
 
-	function setCurrentTaskGroup(taskGroup: TaskGroup) {
+	function setCurrentTaskGroup(taskGroup: ITaskGroup) {
 		$currentTaskGroupStore = taskGroup;
 	}
 </script>

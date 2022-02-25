@@ -1,18 +1,18 @@
-import type { Task, TaskGroup as TaskGroupType, User as UserType } from '$lib/types';
+import type { ITask, ITaskGroup, IUser } from '$lib/types';
 import { writable, type Writable } from 'svelte/store';
 
-interface TaskGroup extends TaskGroupType {
+interface TaskGroup extends ITaskGroup {
 	isCurrent?: boolean;
 }
 
-interface User extends UserType {
+interface User extends IUser {
 	taskGroups: TaskGroup[];
 }
 
 interface UserStore extends Writable<User> {
-	addTaskGroup: (taskGroup: TaskGroupType) => Promise<TaskGroupType>;
-	updateTaskGroup: (taskGroup: TaskGroupType) => Promise<void>;
-	addTaskToTaskGroup: (taskGroup: TaskGroupType, task: Task) => Promise<Task>;
+	addTaskGroup: (taskGroup: ITaskGroup) => Promise<ITaskGroup>;
+	updateTaskGroup: (taskGroup: ITaskGroup) => Promise<void>;
+	addTaskToTaskGroup: (taskGroup: ITaskGroup, task: ITask) => Promise<ITask>;
 }
 
 function createUserStore(): UserStore {
@@ -53,7 +53,7 @@ function createUserStore(): UserStore {
 		},
 		updateTaskGroup,
 		addTaskToTaskGroup: async (taskGroup, { name }) => {
-			const newTask: Task = {
+			const newTask: ITask = {
 				name,
 				id: Date.now(),
 				complete: false,

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { Task } from '$lib/types';
+	import type { ITask } from '$lib/types';
 	import { Icon, Input } from 'sveltestrap';
 
-	export let task: Task;
+	export let task: ITask;
 </script>
 
 <div class="border rounded-3 shadow p-3 d-flex align-items-center justify-content-between">
