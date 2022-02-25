@@ -1,5 +1,6 @@
 <script lang="ts">
-	import NewTask from '$lib/components/forms/NewTask.svelte';
+	import { Task } from '$lib/components';
+	import { NewTask } from '$lib/components/forms';
 	import { Navbar, Sidebar } from '$lib/components/layout';
 	import { currentTaskGroupStore, userStore } from '$lib/stores';
 	import { Container } from 'sveltestrap';
@@ -24,9 +25,11 @@
 			{#if $currentTaskGroupStore}
 				<h1>{$currentTaskGroupStore.name}</h1>
 				<NewTask />
-				{#each $currentTaskGroupStore.tasks as task}
-					<p>{task.name}</p>
-				{/each}
+				<div class="mt-3">
+					{#each $currentTaskGroupStore.tasks as task}
+						<Task {task} />
+					{/each}
+				</div>
 			{:else}
 				<h1>Task Manager</h1>
 			{/if}
