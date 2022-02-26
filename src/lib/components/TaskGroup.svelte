@@ -17,7 +17,7 @@
 			active={taskGroup.id === $currentTaskGroupStore?.id}
 			class="text-break"
 		>
-			{taskGroup.name.repeat(10)}
+			{taskGroup.name}
 		</NavLink>
 	</NavItem>
 </div>
