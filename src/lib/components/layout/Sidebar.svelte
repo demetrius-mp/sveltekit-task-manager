@@ -1,10 +1,9 @@
 <script lang="ts">
+	import { TaskGroupList } from '$lib/components';
 	import { NewTaskGroup } from '$lib/components/forms';
-	import { currentTaskGroupStore, userStore } from '$lib/stores';
-	import type { ITaskGroup } from '$lib/types';
 	import { elementIsOverflowing } from '$lib/utils/dom.utils';
 	import { createEventDispatcher, onMount } from 'svelte';
-	import { Icon, Nav, NavItem, NavLink } from 'sveltestrap';
+	import { Icon, Nav } from 'sveltestrap';
 
 	export let active: boolean = false;
 
@@ -19,10 +18,6 @@
 		const el = document.getElementById('overflowable');
 		applyDynamicPadding = elementIsOverflowing(el);
 	});
-
-	function setCurrentTaskGroup(taskGroup: ITaskGroup) {
-		$currentTaskGroupStore = taskGroup;
-	}
 </script>
 
 <nav>
@@ -47,19 +42,8 @@
 			<NewTaskGroup />
 		</div>
 		<div id="overflowable" class:dynamic-padding={applyDynamicPadding} class="scrollarea pe-3">
-			<Nav pills vertical class="mb-auto">
-				{#each $userStore.taskGroups as taskGroup}
-					<div class="hover-gray mb-1">
-						<NavItem>
-							<NavLink
-								on:click={() => setCurrentTaskGroup(taskGroup)}
-								active={taskGroup.id === $currentTaskGroupStore?.id}
-							>
-								{taskGroup.name}
-							</NavLink>
-						</NavItem>
-					</div>
-				{/each}
+			<Nav pills vertical class="mb-auto gap-1">
+				<TaskGroupList />
 			</Nav>
 		</div>
 	</div>
@@ -68,10 +52,5 @@
 <style>
 	.dynamic-padding {
 		padding-right: calc(1rem - var(--scrollbar-width)) !important;
-	}
-
-	.hover-gray:hover {
-		background-color: lightgrey;
-		border-radius: 0.25rem;
 	}
 </style>

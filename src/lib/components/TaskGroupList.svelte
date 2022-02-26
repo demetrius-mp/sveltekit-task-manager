@@ -1,9 +1,9 @@
 <script>
-	import { currentTaskGroupStore } from '$lib/stores';
+	import { userStore } from '$lib/stores';
 	import { flip } from 'svelte/animate';
 	import { quintOut } from 'svelte/easing';
 	import { crossfade } from 'svelte/transition';
-	import Task from './Task.svelte';
+	import TaskGroup from './TaskGroup.svelte';
 
 	//#region animation
 	const [send, receive] = crossfade({
@@ -26,8 +26,8 @@
 	//#endregion animation
 </script>
 
-{#each $currentTaskGroupStore.tasks as task (task.id)}
-	<div animate:flip in:receive={{ key: task.id }} out:send={{ key: task.id }}>
-		<Task {task} />
+{#each $userStore.taskGroups as taskGroup (taskGroup.id)}
+	<div animate:flip in:receive={{ key: taskGroup.id }} out:send={{ key: taskGroup.id }}>
+		<TaskGroup {taskGroup} />
 	</div>
 {/each}
