@@ -27,7 +27,7 @@
 </script>
 
 <Form on:submit={handleSubmit}>
-	<InputGroup>
+	<InputGroup class="shadow-sm">
 		<Input bind:value={$form.name} placeholder="Search or create" type="text" />
 		<Button outline disabled={$isSubmitting || !$form.name} color="primary" type="submit">
 			<Spinner show={$isSubmitting}>
