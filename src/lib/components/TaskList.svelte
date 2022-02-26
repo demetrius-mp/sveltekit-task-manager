@@ -26,8 +26,10 @@
 	//#endregion animation
 </script>
 
-{#each $currentTaskGroupStore.tasks as task (task.id)}
-	<div animate:flip in:receive={{ key: task.id }} out:send={{ key: task.id }}>
-		<Task {task} />
-	</div>
-{/each}
+{#if $currentTaskGroupStore}
+	{#each $currentTaskGroupStore.tasks as task (task.id)}
+		<div animate:flip in:receive={{ key: task.id }} out:send={{ key: task.id }}>
+			<Task {task} />
+		</div>
+	{/each}
+{/if}
