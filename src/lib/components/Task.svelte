@@ -18,34 +18,24 @@
 </script>
 
 <Card style="border-radius: 0.75rem;" class="shadow">
-	<CardBody>
-		<div class="d-flex align-items-center gap-2 justify-content-between">
-			<div class="min-w-0 d-flex align-items-center gap-2">
-				<span on:click={handleCheckTask}>
-					{#if task.complete}
-						<Icon name="check-circle" class="fs-5 cursor-pointer" />
-					{:else}
-						<Icon name="circle" class="fs-5 cursor-pointer" />
-					{/if}
-				</span>
-				<div class="min-w-0">
-					<h3 class="m-0">{task.name}</h3>
-				</div>
-			</div>
-			<div class="d-flex gap-2 align-items-center">
-				<span>
-					<Icon name="pencil" class="fs-5 cursor-pointer" />
-				</span>
-				<span on:click={handleDeleteTask}>
-					<Icon name="trash" class="fs-5 cursor-pointer" />
-				</span>
-			</div>
+	<CardBody class="d-flex align-items-center justify-content-between gap-2">
+		<div class="d-flex align-items-center gap-2">
+			<span on:click={handleCheckTask}>
+				{#if task.complete}
+					<Icon name="check-circle" class="fs-5 cursor-pointer" />
+				{:else}
+					<Icon name="circle" class="fs-5 cursor-pointer" />
+				{/if}
+			</span>
+			<h3 class="m-0 text-break">{task.name}</h3>
+		</div>
+		<div class="d-flex align-items-center  gap-2">
+			<span>
+				<Icon name="pencil" class="fs-5 cursor-pointer" />
+			</span>
+			<span on:click={handleDeleteTask}>
+				<Icon name="trash" class="fs-5 cursor-pointer" />
+			</span>
 		</div>
 	</CardBody>
 </Card>
-
-<style>
-	.min-w-0 {
-		min-width: 0;
-	}
-</style>
