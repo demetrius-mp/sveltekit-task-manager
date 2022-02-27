@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { TaskForm } from '$lib/components/forms';
 	import { currentTaskGroupStore } from '$lib/stores';
 	import type { ITask } from '$lib/types';
-	import { Card, CardBody, Icon } from 'sveltestrap';
+	import { Card, CardBody, Icon, Modal, ModalBody, ModalHeader } from 'sveltestrap';
 
 	export let task: ITask;
 
@@ -14,6 +15,11 @@
 	function handleCheckTask() {
 		task.complete = !task.complete;
 		currentTaskGroupStore.updateTask(task);
+	}
+
+	let editTaskModalIsOpen: boolean = false;
+	function toggleEditTaskModal() {
+		editTaskModalIsOpen = !editTaskModalIsOpen;
 	}
 </script>
 
@@ -32,7 +38,7 @@
 			</h3>
 		</div>
 		<div class="d-flex align-items-center  gap-2">
-			<span>
+			<span on:click={toggleEditTaskModal}>
 				<Icon name="pencil" class="fs-5 cursor-pointer" />
 			</span>
 			<span on:click={handleDeleteTask}>
@@ -41,3 +47,10 @@
 		</div>
 	</CardBody>
 </Card>
+
+<Modal isOpen={editTaskModalIsOpen} toggle={toggleEditTaskModal}>
+	<ModalHeader toggle={toggleEditTaskModal}>Edit task</ModalHeader>
+	<ModalBody>
+		<TaskForm on:success={toggleEditTaskModal} {task} />
+	</ModalBody>
+</Modal>
