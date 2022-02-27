@@ -30,7 +30,6 @@ export function resize(node: HTMLTextAreaElement): SvelteActionReturnType {
 
 	node.setAttribute('style', 'height:' + node.scrollHeight + 'px;overflow-y:hidden;');
 	node.addEventListener('input', handleInput);
-	handleInput();
 
 	return {
 		destroy: () => {
