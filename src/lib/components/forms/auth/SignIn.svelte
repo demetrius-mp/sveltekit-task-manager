@@ -70,15 +70,17 @@
 	</FormGroup>
 	<FormGroup class="d-flex justify-content-between align-items-baseline">
 		<Input id="rememberMe" type="checkbox" label="Remember me" />
-		<small>
-			<a
-				href="/"
-				class="text-muted text-decoration-underline cursor-pointer"
-				on:click|preventDefault={() => dispatch('forgotpassword')}
-			>
-				Forgot your password?
-			</a>
-		</small>
+		<div class="text-end">
+			<small>
+				<a
+					href="/"
+					class="text-muted text-decoration-underline cursor-pointer"
+					on:click|preventDefault={() => dispatch('forgotpassword')}
+				>
+					Forgot your password?
+				</a>
+			</small>
+		</div>
 	</FormGroup>
 	<Button disabled={$isSubmitting} color="primary" class="d-block w-100 mt-3 mb-2" size="lg">
 		<Spinner show={$isSubmitting}>Sign In</Spinner>
