@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Spinner } from '$lib/components/ux';
-	import { currentTaskGroupStore, userStore } from '$lib/stores';
+	import { currentTaskGroupStore, taskGroupSearchString, userStore } from '$lib/stores';
 	import type { ITaskGroup } from '$lib/types';
 	import { requiredString } from '$lib/utils/form.utils';
 	import { createEventDispatcher } from 'svelte';
@@ -44,9 +44,14 @@
 
 	interface EventDispatcher {
 		success: void;
+		change: string;
 	}
 
 	const dispatch = createEventDispatcher<EventDispatcher>();
+
+	$: {
+		$taskGroupSearchString = $form.name;
+	}
 </script>
 
 <Form on:submit={handleSubmit}>

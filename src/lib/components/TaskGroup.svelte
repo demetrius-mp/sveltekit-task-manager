@@ -1,12 +1,16 @@
 <script lang="ts">
-	import { currentTaskGroupStore } from '$lib/stores';
+	import { currentTaskGroupStore, taskGroupSearchString } from '$lib/stores';
 	import type { ITaskGroup } from '$lib/types';
-	import { NavItem, NavLink } from 'sveltestrap';
+	import { Icon, NavItem, NavLink } from 'sveltestrap';
 
 	export let taskGroup: ITaskGroup;
 
 	function setCurrentTaskGroup(taskGroup: ITaskGroup) {
 		$currentTaskGroupStore = taskGroup;
+	}
+
+	function isSearchResult(searchString: string) {
+		return searchString && taskGroup.name.includes(searchString);
 	}
 </script>
 
@@ -17,6 +21,9 @@
 			active={taskGroup.id === $currentTaskGroupStore?.id}
 			class="text-break"
 		>
+			{#if isSearchResult($taskGroupSearchString)}
+				<Icon name="circle-fill" class="text-warning" />
+			{/if}
 			{taskGroup.name}
 		</NavLink>
 	</NavItem>
