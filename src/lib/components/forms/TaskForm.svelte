@@ -2,12 +2,12 @@
 	import { Spinner } from '$lib/components/ux';
 	import { currentTaskGroupStore } from '$lib/stores';
 	import type { ITask } from '$lib/types';
-	import { disableNewLine, resetTextAreaHeight, resizeTextArea } from '$lib/utils/dom.utils';
 	import { requiredString } from '$lib/utils/form.utils';
-	import { createEventDispatcher, onMount } from 'svelte';
+	import { createEventDispatcher } from 'svelte';
 	import { createForm } from 'svelte-forms-lib';
-	import { Button, Form, Icon, Input, InputGroup } from 'sveltestrap';
+	import { Button, Form, Icon, InputGroup } from 'sveltestrap';
 	import * as yup from 'yup';
+	import ResizeableInput from './ResizeableInput.svelte';
 
 	export let task: ITask = {
 		name: ''
@@ -37,7 +37,6 @@
 
 			dispatch('success');
 			handleReset();
-			resetTextAreaHeight(textAreaElement);
 		}
 	});
 
@@ -46,38 +45,11 @@
 	}
 
 	const dispatch = createEventDispatcher<EventDispatcher>();
-
-	let textAreaElement: HTMLTextAreaElement;
-
-	function handleInput() {
-		resizeTextArea(textAreaElement);
-	}
-
-	function handleKeyPress(event: KeyboardEvent) {
-		const isEnterKey = disableNewLine(event);
-
-		if (isEnterKey) {
-			// @ts-ignore
-			handleSubmit();
-		}
-	}
-
-	onMount(() => {
-		resizeTextArea(textAreaElement);
-	});
 </script>
 
 <Form on:submit={handleSubmit}>
 	<InputGroup class="shadow-sm">
-		<Input
-			bind:value={$form.name}
-			placeholder="Search or create"
-			type="textarea"
-			rows={1}
-			bind:inner={textAreaElement}
-			on:input={handleInput}
-			on:keypress={handleKeyPress}
-		/>
+		<ResizeableInput bind:value={$form.name} preventNewLine on:newline={handleSubmit} />
 		<Button outline disabled={$isSubmitting || !$form.name} color="primary" type="submit">
 			<Spinner show={$isSubmitting}>
 				<Icon name={task.id === undefined ? 'plus' : 'pencil'} />
