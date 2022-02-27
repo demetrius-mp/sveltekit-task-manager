@@ -31,7 +31,7 @@
 					...task,
 					name
 				};
-				currentTaskGroupStore.updateTask(updatedTask);
+				await currentTaskGroupStore.updateTask(updatedTask);
 			}
 
 			dispatch('success');

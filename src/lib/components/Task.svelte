@@ -6,15 +6,15 @@
 
 	export let task: ITask;
 
-	function handleDeleteTask() {
+	async function handleDeleteTask() {
 		if (confirm('Are you sure you want to delete this task?')) {
-			currentTaskGroupStore.deleteTask(task);
+			await currentTaskGroupStore.deleteTask(task);
 		}
 	}
 
-	function handleCheckTask() {
+	async function handleCheckTask() {
 		task.complete = !task.complete;
-		currentTaskGroupStore.updateTask(task);
+		await currentTaskGroupStore.updateTask(task);
 	}
 
 	let editTaskModalIsOpen: boolean = false;
