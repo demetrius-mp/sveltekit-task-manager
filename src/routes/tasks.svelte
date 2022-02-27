@@ -21,7 +21,7 @@
 
 	<main class:active={sidebarIsActive} class="global__content">
 		<Navbar bind:rotated={sidebarIsActive} on:toggleSidebar={handleToggleSidebar} />
-		<Container class="mt-3">
+		<Container class="my-3">
 			{#if $currentTaskGroupStore}
 				<TaskGroupHeading />
 				<TaskForm />
