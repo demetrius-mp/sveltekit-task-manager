@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { TaskGroupList } from '$lib/components';
-	import { NewTaskGroup } from '$lib/components/forms';
+	import { TaskGroupForm } from '$lib/components/forms';
 	import { elementIsOverflowing } from '$lib/utils/dom.utils';
 	import { createEventDispatcher, onMount } from 'svelte';
 	import { Icon, Nav } from 'sveltestrap';
@@ -39,7 +39,7 @@
 			<hr style="margin-top: 6px;" />
 		</div>
 		<div class="mb-3 pe-3">
-			<NewTaskGroup />
+			<TaskGroupForm />
 		</div>
 		<div id="overflowable" class:dynamic-padding={applyDynamicPadding} class="scrollarea pe-3">
 			<Nav pills vertical class="mb-auto gap-1">
