@@ -27,7 +27,9 @@
 					<Icon name="circle" class="fs-5 cursor-pointer" />
 				{/if}
 			</span>
-			<h3 class="m-0 text-break">{task.name}</h3>
+			<h3 class:text-decoration-line-through={task.complete} class="m-0 text-break">
+				{task.name}
+			</h3>
 		</div>
 		<div class="d-flex align-items-center  gap-2">
 			<span>
