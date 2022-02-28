@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Spinner } from '$lib/components/ux';
-	import { currentTaskGroupStore, taskSearchString } from '$lib/stores';
+	import { currentTaskGroupStore } from '$lib/stores';
 	import type { ITask } from '$lib/types';
 	import { requiredString } from '$lib/utils/form.utils';
 	import { createEventDispatcher } from 'svelte';
@@ -45,15 +45,16 @@
 	}
 
 	const dispatch = createEventDispatcher<EventDispatcher>();
-
-	$: {
-		$taskSearchString = $form.name;
-	}
 </script>
 
 <Form on:submit={handleSubmit}>
 	<InputGroup class="shadow-sm">
-		<ResizeableInput bind:value={$form.name} preventNewLine on:newline={handleSubmit} />
+		<ResizeableInput
+			placeholder="Create task"
+			bind:value={$form.name}
+			preventNewLine
+			on:newline={handleSubmit}
+		/>
 		<Button outline disabled={$isSubmitting || !$form.name} color="primary" type="submit">
 			<Spinner show={$isSubmitting}>
 				<Icon name={task.id === undefined ? 'plus' : 'pencil'} />

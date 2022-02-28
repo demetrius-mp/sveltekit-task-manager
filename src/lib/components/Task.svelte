@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { TaskForm } from '$lib/components/forms';
-	import { currentTaskGroupStore, taskSearchString } from '$lib/stores';
+	import { currentTaskGroupStore } from '$lib/stores';
 	import type { ITask } from '$lib/types';
 	import { Card, CardBody, Icon, Modal, ModalBody, ModalHeader } from 'sveltestrap';
 
@@ -21,10 +21,6 @@
 	function toggleEditTaskModal() {
 		editTaskModalIsOpen = !editTaskModalIsOpen;
 	}
-
-	function isSearchResult(searchString: string) {
-		return searchString && task.name.includes(searchString);
-	}
 </script>
 
 <Card style="border-radius: 0.75rem;" class="shadow">
@@ -37,9 +33,6 @@
 					<Icon name="circle" class="fs-5 cursor-pointer" />
 				{/if}
 			</span>
-			{#if isSearchResult($taskSearchString)}
-				<Icon name="circle-fill" class="text-warning" />
-			{/if}
 			<h3 class:text-decoration-line-through={task.complete} class="m-0 text-break">
 				{task.name}
 			</h3>

@@ -4,6 +4,7 @@
 
 	export let value: string;
 	export let preventNewLine: boolean = false;
+	export let placeholder: string;
 
 	interface EventDispatcher {
 		newline: void;
@@ -35,7 +36,7 @@
 <textarea
 	bind:value
 	bind:this={element}
-	placeholder="Search or create"
+	{placeholder}
 	class="form-control"
 	rows="1"
 	use:resize

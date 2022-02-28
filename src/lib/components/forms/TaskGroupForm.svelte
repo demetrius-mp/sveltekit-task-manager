@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Spinner } from '$lib/components/ux';
-	import { currentTaskGroupStore, taskGroupSearchString, userStore } from '$lib/stores';
+	import { currentTaskGroupStore, userStore } from '$lib/stores';
 	import type { ITaskGroup } from '$lib/types';
 	import { requiredString } from '$lib/utils/form.utils';
 	import { createEventDispatcher } from 'svelte';
@@ -48,15 +48,16 @@
 	}
 
 	const dispatch = createEventDispatcher<EventDispatcher>();
-
-	$: {
-		$taskGroupSearchString = $form.name;
-	}
 </script>
 
 <Form on:submit={handleSubmit}>
 	<InputGroup class="shadow-sm">
-		<ResizeableInput bind:value={$form.name} preventNewLine on:newline={handleSubmit} />
+		<ResizeableInput
+			placeholder="Create group"
+			bind:value={$form.name}
+			preventNewLine
+			on:newline={handleSubmit}
+		/>
 		<Button outline disabled={$isSubmitting || !$form.name} color="primary" type="submit">
 			<Spinner show={$isSubmitting}>
 				<Icon name="folder-plus" />
